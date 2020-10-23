@@ -1,14 +1,12 @@
-from os import system, name
-import shutil
-
 class WelcomeScreen:
-	def __init__(self):
-		system('clear')
+	def __init__(self, terminal):
+		self.__terminal__ = terminal
+		self.__terminal__.clear()
+		self.welcomeUser()
 
 	def welcomeUser(self):
-		screenSize = shutil.get_terminal_size().columns
-		print("-----Welcome User-----".center(screenSize))
-		print("(Type exit to quit at any time)\n\n\n".center(screenSize))
+		self.__terminal__.printCenter("--- Welcome User ---")
+		self.__terminal__.printCenter("(Type exit to quit at any time)")
 		
 	def checkUserExistence(self):
 		while True:
@@ -21,5 +19,5 @@ class WelcomeScreen:
 				return None
 			else:
 				input("Invalid input, press enter to continue: ")
-				system('clear')
+				self.__terminal__.clear()
 

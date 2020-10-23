@@ -1,6 +1,7 @@
 from WelcomeScreen import WelcomeScreen
+from Terminal import Terminal
 
-welcomeScreen = WelcomeScreen()
-welcomeScreen.welcomeUser()
+terminal = Terminal()
+welcomeScreen = WelcomeScreen(terminal)
 isUser = welcomeScreen.checkUserExistence()
 print(isUser)
