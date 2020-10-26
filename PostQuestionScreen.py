@@ -1,0 +1,2 @@
+class PostQuestionScreen:
+	def printScreen():
