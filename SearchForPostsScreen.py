@@ -9,13 +9,19 @@ class SearchForPostsScreen:
 	def __init__(self, terminal):
 		self.__terminal__ = terminal
 			
-	def printScreen(self):
+	def printTitle(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Search for Posts")
 		self.__terminal__.printCenter("Enter terms delimited by commas")
-	def getKeyWords(self):
+	def printScreen(self):
+		self.printTitle()
 		userInput = input("Enter search term(s): ")
 		searchTermList = userInput.split(",")
 		for i, string in enumerate(searchTermList):
 			searchTermList[i] = string.strip()
-		print(searchTermList)
+		return searchTermList
+
+if __name__ == "__main__":
+	from Terminal import Terminal
+	searchPostScreen = SearchForPostsScreen(Terminal())
+	print(searchPostScreen.printScreen())

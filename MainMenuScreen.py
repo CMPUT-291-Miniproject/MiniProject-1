@@ -15,5 +15,10 @@ class MainMenuScreen:
 		self.__menu__.addMenuItem("Post a question")
 		self.__menu__.addMenuItem("Search for posts")
 
-	def getUserSelection(self):
-		return self.__menu__.getUserSelection()		
+	def printScreen(self):
+		return self.__menu__.printScreen()
+
+if __name__ == "__main__":
+	from Terminal import Terminal
+	mainMenu = MainMenuScreen(Terminal())
+	mainMenu.printScreen()		
