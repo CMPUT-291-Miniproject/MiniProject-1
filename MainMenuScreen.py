@@ -1,6 +1,6 @@
 from Menu import Menu
 
-class MainMenu():
+class MainMenuScreen:
 	"""
 	A screen which allows the user to select
 	an action they would like to perform.
@@ -14,7 +14,6 @@ class MainMenu():
 	
 		self.__menu__.addMenuItem("Post a question")
 		self.__menu__.addMenuItem("Search for posts")
-		self.__menu__.addMenuItem("Post action - Answer")
-		self.__menu__.addMenuItem("Post action - Vote")
 
-		self.__menu__.getUserSelection()		
+	def getUserSelection(self):
+		return self.__menu__.getUserSelection()		
