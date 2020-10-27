@@ -4,6 +4,7 @@ from MainMenuScreen import MainMenuScreen
 from SearchForPostsScreen import SearchForPostsScreen
 from PostMenuScreen import PostMenuScreen
 
+
 terminal = Terminal()
 welcomeScreen = WelcomeScreen(terminal)
 isUser = welcomeScreen.checkUserRegistration()
@@ -18,3 +19,4 @@ p = ["Sunshine", "Lolipops", "Rainbows", "Everything", "So Wonderful", "When We 
 
 pMenu = PostMenuScreen(terminal, p)
 pMenu.printScreen()
+print(terminal.getDBName())
