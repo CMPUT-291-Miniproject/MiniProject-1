@@ -8,7 +8,7 @@ class PostQuestionScreen:
 			self.__terminal__.clear()
 			self.__body__ = PostQuestion(dbName)
 	
-	def add_question(self):
+	def printScreen(self):
 		repeat = True
 		
 		while repeat:
@@ -45,5 +45,5 @@ class PostQuestionScreen:
 					
 if __name__ == "__main__":
 	
-	screen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
-	screen.add_question()
+	postQuestionScreen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
+	postQuestionScreen.printScreen()
