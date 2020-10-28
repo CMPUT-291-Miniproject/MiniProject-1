@@ -1,3 +1,4 @@
+from LoginUser import LoginUser
 class LoginScreen:
 	"""
 	A screen which handles logging in and the processes
@@ -10,6 +11,17 @@ class LoginScreen:
 	
 	def __init__(self, terminal):
 		self.__terminal__ = terminal
+		self.__terminal__.clear()
+			
+	def printTitle(self):
+		self.__terminal__.printCenter("Login Screen")
 	
-	def printScreen():
-		return 0
+	def printScreen(self):
+		self.printTitle()
+		uid = input("Enter UserID: ")
+		password = input("Enter Password: ")
+
+if __name__ == "__main__":
+	from Terminal import Terminal
+	loginScreen = LoginScreen(Terminal())
+	loginScreen.printScreen()

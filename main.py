@@ -1,8 +1,13 @@
-from WelcomeScreen import WelcomeScreen
 from Terminal import Terminal
-from MainMenu import MainMenu
 
-terminal = Terminal()
-welcomeScreen = WelcomeScreen(terminal)
-isUser = welcomeScreen.checkUserRegistration()
-menu = MainMenu(terminal)
+from WelcomeScreen import WelcomeScreen
+from LoginScreen import LoginScreen
+from RegisterUserScreen import RegisterUserScreen
+
+from MainMenuScreen import MainMenuScreen
+
+from PostQuestionScreen import PostQuestionScreen
+from SearchForPostsScreen import SearchForPostsScreen
+from PostMenuScreen import PostMenuScreen
+
+

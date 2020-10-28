@@ -9,14 +9,14 @@ class WelcomeScreen:
 	def __init__(self, terminal):
 		self.__terminal__ = terminal
 		self.__terminal__.clear()
-		self.welcomeUser()
 
-	def welcomeUser(self):
+	def printWelcome(self):
 		self.__terminal__.printCenter("--- Welcome User ---")
 		self.__terminal__.printCenter("(Type exit to quit at any time)")
 		
-	def checkUserRegistration(self):
+	def printScreen(self):
 		while True:
+			self.printWelcome()
 			userInput = input("Are you an existing user? (Type y or n): ").upper()
 			if userInput == "Y":
 				return True
@@ -28,3 +28,8 @@ class WelcomeScreen:
 				input("Invalid input, press enter to continue: ")
 				self.__terminal__.clear()
 
+
+if __name__ == "__main__":
+	from Terminal import Terminal
+	welcomeScreen = WelcomeScreen(Terminal())
+	welcomeScreen.printScreen()

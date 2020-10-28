@@ -2,7 +2,7 @@ from Terminal import Terminal
 from PostQuestion import PostQuestion
 
 class PostQuestionScreen:
-	
+  
 	def __init__(self, terminal, dbName):
 			self.__terminal__ = terminal
 			self.__terminal__.clear()
@@ -47,7 +47,3 @@ if __name__ == "__main__":
 	
 	screen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
 	screen.add_question()
-				
-			
-		
-		
