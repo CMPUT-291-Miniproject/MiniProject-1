@@ -1,13 +1,14 @@
 from Terminal import Terminal
+dbName = 'Miniproject_1.db'
 
-from WelcomeScreen import WelcomeScreen
-from LoginScreen import LoginScreen
-from RegisterUserScreen import RegisterUserScreen
-
-from MainMenuScreen import MainMenuScreen
-
-from PostQuestionScreen import PostQuestionScreen
-from SearchForPostsScreen import SearchForPostsScreen
-from PostMenuScreen import PostMenuScreen
-
-
+terminal = Terminal()
+welcomeScreen = WelcomeScreen(terminal)
+isUser = welcomeScreen.checkUserRegistration()
+if isUser:
+	uid =
+elif not isUser:
+	#register, then log in
+elif isUser is None:
+	#send goodbye message and quit
+	return
+menu = MainMenu(terminal)
