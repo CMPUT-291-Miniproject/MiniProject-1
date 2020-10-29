@@ -1,5 +1,6 @@
 from os import system
 import shutil
+import sys
 
 class Terminal:
 	"""
@@ -16,4 +17,6 @@ class Terminal:
 	
 	def printCenter(self, string):
 		print(string.center(self.__screenSize__))		
-		
+	
+	def getDBName(self):
+		return sys.argv[1]		

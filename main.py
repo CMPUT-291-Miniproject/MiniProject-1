@@ -1,7 +1,4 @@
-from WelcomeScreen import WelcomeScreen
 from Terminal import Terminal
-from MainMenu import MainMenu
-
 dbName = 'Miniproject_1.db'
 
 terminal = Terminal()

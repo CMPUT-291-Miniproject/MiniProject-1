@@ -22,12 +22,10 @@ class PostQuestionScreen:
 			
 		Returns: N/A
 		"""
-			self.__terminal__ = terminal
-			self.__terminal__.clear()
-			self.__body__ = PostQuestion(dbName, uid)
 	
-	def add_question(self):
-		"""
+
+	def printScreen(self):
+    """
 		User interface for adding a question to the database. This method validates all user input before passing it to PostQuestion.py, which actually adds the entry to the database.
 		
 		Parameters: N/A
@@ -82,9 +80,5 @@ class PostQuestionScreen:
 					
 if __name__ == "__main__":
 	
-	screen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
-	screen.add_question()
-				
-			
-		
-		
+	postQuestionScreen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
+	postQuestionScreen.printScreen()
