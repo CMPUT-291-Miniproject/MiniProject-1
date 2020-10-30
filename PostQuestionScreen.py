@@ -8,7 +8,7 @@ class PostQuestionScreen:
 	Uses the framework from PostQuestion.py to enter the question into the database, and Terminal for extra UI commands.
 	"""
 	
-	def __init__(self, terminal, dbName, uid):
+	def __init__(self, terminal, uid):
 		"""
 		Creates an instance of PostQuestionScreen, which is used in Main.py (subject to change)
 		
@@ -22,10 +22,12 @@ class PostQuestionScreen:
 			
 		Returns: N/A
 		"""
+		self.__terminal__ = terminal
+		self.__body__ = PostQuestion(terminal.getDBName(), uid)
 	
 
 	def printScreen(self):
-    """
+		"""
 		User interface for adding a question to the database. This method validates all user input before passing it to PostQuestion.py, which actually adds the entry to the database.
 		
 		Parameters: N/A

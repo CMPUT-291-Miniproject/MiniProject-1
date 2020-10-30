@@ -14,6 +14,8 @@ class MainMenuScreen:
 	
 		self.__menu__.addMenuItem("Post a question")
 		self.__menu__.addMenuItem("Search for posts")
+		self.__menu__.addMenuItem("Logout")
+		self.__menu__.addMenuItem("Exit Program")
 
 	def printScreen(self):
 		return self.__menu__.printScreen()
