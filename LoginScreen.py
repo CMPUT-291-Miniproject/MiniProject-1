@@ -11,18 +11,17 @@ class LoginScreen:
 	users. 
 	"""
 	
-	def __init__(self, terminal, dbName):
+	def __init__(self, terminal):
 		"""
 		Creates an instance of LoginScreen, which is the UI interface for logging into the program.
 		
 		Parameters:
 			Terminal: Terminal object. Used for extra console commands, like clearing the screen and printing to the center of it.
-			dbName: String. Name of the database, entered as an arguement on runtime of main.py
 			
 		Returns: N/A
 		"""
 		self.__terminal__ = terminal
-		self.__dbName__ = dbName
+		self.__dbName__ = terminal.getDBName()
 		
 	def log_in(self):
 		"""

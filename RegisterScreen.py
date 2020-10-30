@@ -16,7 +16,7 @@ class RegisterScreen:
 		password = input("Enter Desired Password: ")
 
 	def printTitle(self):
-		self.__terminal__.printCenter("Register")
+		self.__terminal__.printCenter("---Register---")
 
 if __name__ == "__main__":
 	from Terminal import Terminal
