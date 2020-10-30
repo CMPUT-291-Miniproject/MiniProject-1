@@ -1,9 +1,36 @@
+import sqlite3
 from Terminal import Terminal
 from LoginScreen import LoginScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
 from PostQuestionScreen import PostQuestionScreen
 #dbName = 'Miniproject_1.db'
+
+def check_priv(dbName, uid):
+	"""
+	checks the database to see if the user has the title of privileged. 
+	
+	Parameters:
+		dbName: String. Name of the database, derived from terminal.py
+		uid: 4 character string. Unique ID of the user, used for loads the things in the program.
+		
+	Returns:
+		check: Boolean. True when a match between the uid of the user and a uid in the Privileged table in the database, False otherwise.
+	"""
+	#connect to database and create cursor to query
+	db = sqlite3.connect(dbName)
+	cur = db.cursor()
+	
+	#grab a matching uid in privileged table, then closes the database.
+	cur.execute("SELECT uid FROM privileged WHERE ? = uid", (uid,))
+	check = cur.fetchone()
+	db.close()
+	
+	#if a match is found, return true. If no matches were found, return false.
+	if check is None:
+		return False
+	else:
+		return True
 
 if __name__ == "__main__":
 	terminal = Terminal()
@@ -16,9 +43,15 @@ if __name__ == "__main__":
 		welcomeScreen = WelcomeScreen(terminal)
 		isUser = welcomeScreen.printScreen()
 		
+		#open the login screen and log the user in. They can return back if they want to too.
 		if isUser:
 			#log the user in
 			uid = LoginScreen(terminal).log_in()
+			
+			#checks if the user is a privileged user
+			priv = check_priv(terminal.getDBName(), uid)
+			#testing below
+			#print(priv)			
 			
 		#funny tidbit, the statement "not isUser" returns true if isUser is not True, even if isUser is NoneType.
 		elif isUser == False:
