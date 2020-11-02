@@ -2,13 +2,33 @@ from RegisterUser import RegisterUser
 from CheckInput import CheckInput
 
 class RegisterScreen:
-
+	"""
+	RegisterScreen provides an interface for users
+	such that they can register.
+	"""
 	def __init__(self, terminal, dbName):
+		"""
+		Creates an instance of RegisterScreen
+		
+		@parameters
+			terminal: A Terminal object that allows this
+				  program to interact with the terminal
+			dbName: A String object containing the name of the
+				database for creation of RegisterUser object
+		"""
 		self.__terminal__ = terminal
 		self.__checkInput__ = CheckInput()
 		self.__registerUser__ = RegisterUser(dbName)
 
 	def printScreen(self):
+		"""
+		Prints title, gathers data, checks data for escape or errors,
+		and if there are neither inserts data as a user in the database 
+	
+		@return
+			None: In the case where the user was not registered
+			userID: In the case where the user was registered
+		"""
 		validInput = False
 		while not validInput:
 			self.__terminal__.clear()
@@ -37,6 +57,9 @@ class RegisterScreen:
 		return userID
 
 	def printTitle(self):
+		"""
+		Prints title of screen as well as instructions for user
+		"""
 		self.__terminal__.printCenter("Register")
 		self.__terminal__.printCenter("--UserID must contain exactly 4 alphanumeric characters--")
 		self.__terminal__.printCenter("--Name must contain only letters--")
