@@ -3,7 +3,7 @@ from Terminal import Terminal
 from LoginScreen import LoginScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
-from PostQuestionScreen import PostQuestionScreen
+from PostScreen import PostScreen
 #dbName = 'Miniproject_1.db'
 
 def check_priv(dbName, uid):
@@ -70,11 +70,12 @@ if __name__ == "__main__":
 			
 			#post question
 			if menu == 0:
-				PostQuestionScreen(terminal, uid).printScreen()
+				PostScreen(terminal, uid).printQuestionScreen()
 				
 			#TODO: search for posts
 			elif menu == 1:
-				pass
+				#temporary testing
+				PostScreen(terminal, uid).printAnswerScreen('qfKp')
 				
 			#log out of account
 			elif menu == 2:
