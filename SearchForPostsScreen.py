@@ -10,9 +10,9 @@ class SearchForPostsScreen:
 	This module allows the user to interface with the SearchForPosts
 	module.
 	"""
-	def __init__(self, terminal, dbName):
+	def __init__(self, terminal):
 		self.__terminal__ = terminal
-		self.__SearchForPosts__ = SearchForPosts(dbName)
+		self.__SearchForPosts__ = SearchForPosts(terminal.getDBName())
 		self.__menu__ = Menu(terminal)		
 		self.__chkinp__ = CheckInput()		
 
@@ -102,5 +102,5 @@ class SearchForPostsScreen:
 			input("Press enter to continue with action taken: ")
 if __name__ == "__main__":
 	from Terminal import Terminal
-	searchPostScreen = SearchForPostsScreen(Terminal(), "Miniproject_1.db")
+	searchPostScreen = SearchForPostsScreen(Terminal())
 	searchPostScreen.printScreen()

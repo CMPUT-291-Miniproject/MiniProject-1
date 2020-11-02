@@ -5,8 +5,11 @@ class Tag:
 		self.__connection__ = sqlite3.connect(dbName)
 	
 	def addTag(self, pid, tag):
+		tag = tag.upper()
 		cursor = self.__connection__.cursor()
-		cursor.execute("INSERT INTO tags VALUES (?, ?)", (tag, pid))
-		self.__connection__.commit()
-		return 0
-
+		cursor.execute("SELECT tag FROM tags WHERE pid = ? AND tag LIKE(?)", (pid, "%"+tag+"%"))
+		if cursor.fetchone() is None:
+			cursor.execute("INSERT INTO tags VALUES (?, ?)", (pid, tag))
+			self.__connection__.commit()
+		else:
+			raise ValueError("Post has already been tagged with " + tag)
