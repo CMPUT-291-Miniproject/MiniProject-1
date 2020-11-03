@@ -1,4 +1,6 @@
 from Menu import Menu
+from PostQuery import QuestionQuery
+from PostQuery import AnswerQuery
 class SelectedPostScreen:
 	def __init__(self, terminal, post, privileged):
 		self.__terminal__ = terminal
@@ -9,7 +11,7 @@ class SelectedPostScreen:
 
 	def menuSetup(self):
 		self.__menu__.addMenuItem("Upvote")
-		if self.__post__[1]:		#Post is a question
+		if isinstance(self.__post__, QuestionQuery):
 			self.__menu__.addMenuItem("Post an answer")
 		else:
 			if (self.__privileged__):
@@ -21,11 +23,8 @@ class SelectedPostScreen:
 
 	def printTitle(self):
 		self.__terminal__.clear()
-		self.__terminal__.printCenter(self.__post__[0][0])
-		if self.__post__[1]:		#Post is a question
-			self.__terminal__.printCenter(self.__post__[0][3])
-		else:
-			self.__terminal__.printCenter(self.__post__[0][2])
+		self.__terminal__.printCenter(self.__post__.title)
+		self.__terminal__.printCenter(self.__post__.body)
 
 	def printScreen(self):
 		self.printTitle()
