@@ -83,19 +83,50 @@ if __name__ == "__main__":
 				
 			#TODO: search for posts
 			elif menu == 1:
+				
+				#PseudoCode for when this searchforposts works
+				
+				#Grab the post to perform the action on
+				post = SearchForPostsScreen(terminal)
+				
+				#while the user is still using the menue
+				#while True:
+					#if the post is a question:
+						#Options are:
+							#reply to post
+							#vote on post
+							#exit to menue
+						#if the user is privileged:
+							#edit post
+							#give badge
+							#add tag
+						
+					#elif the post is an answer:
+						#vote on the answer
+						#exit to menue
+						#If the user is privileged:
+							#edit post
+							#give badge
+							#add tag
+							#mark as the accepted answer
+					
+					
+				
+				
+				
+				
+				"""legacy
+				
 				#grab a 
-				post = SearchForPostsScreen(terminal, terminal.getDBName()).printScreen()
-				try:
-					if post[1][0] is 1:
-						question = False
-				except:
-					question = post[1]
+				post = SearchForPostsScreen(terminal).printScreen()
+				
 				print(post)
-				print(question)
+				#print(question)
 				input()
 				
 				terminal.clear()
 				terminal.printCenter("Title:" + post[0][0])
+				
 				
 				if question == True:
 					#question is a question
@@ -113,7 +144,7 @@ if __name__ == "__main__":
 				if stuff == 1:
 					terminal.clear()
 					PostScreen(terminal, uid).printAnswerScreen(post[0][4])
-								
+				"""
 			#log out of account
 			elif menu == 2:
 				break
