@@ -97,18 +97,18 @@ class SearchForPostsScreen:
 	def getMenu(self):
 		self.__menu__.clearMenu()
 		if (index + POSTPERPAGE > maxIndex):
-				for post in posts[index:]:
-					if isinstance(post, QuestionQuery):
-						self.__menu__.addMenuItem(str(post.title)+ " | " + str(post.voteCount) + " | " + str(post.answerCount))
-					else:
-						self.__menu__.addMenuItem(str(post.title) + " | " + str(post.voteCount))
+			for post in posts[index:]:
+				if isinstance(post, QuestionQuery):
+					self.__menu__.addMenuItem(str(post.title)+ " | " + str(post.voteCount) + " | " + str(post.answerCount))
+				else:
+					self.__menu__.addMenuItem(str(post.title) + " | " + str(post.voteCount))
 			return False
 		else:
 			for i in range(index, index+POSTPERPAGE):
-					if isinstance(post, QuestionQuery):
-						self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount) + " | " + str(posts[i].answerCount))
-					else:
-						self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount))
+				if isinstance(post, QuestionQuery):
+					self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount) + " | " + str(posts[i].answerCount))
+				else:
+					self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount))
 			return True
 if __name__ == "__main__":
 	from Terminal import Terminal
