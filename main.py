@@ -1,11 +1,9 @@
 import sqlite3
 from Terminal import Terminal
 from LoginScreen import LoginScreen
-from RegisterScreen import RegisterScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
 from PostScreen import PostScreen
-from SearchForPostsScreen import SearchForPostsScreen
 #dbName = 'Miniproject_1.db'
 
 def check_priv(dbName, uid):
@@ -33,9 +31,7 @@ def check_priv(dbName, uid):
 		return False
 	else:
 		return True
-		
 
-"""START OF PROGRAM"""
 if __name__ == "__main__":
 	terminal = Terminal()
 
@@ -53,19 +49,14 @@ if __name__ == "__main__":
 			uid = LoginScreen(terminal).log_in()
 			
 			#checks if the user is a privileged user
-			priv = check_priv(terminal.getDBName(), uid)			
+			priv = check_priv(terminal.getDBName(), uid)
+			#testing below
+			#print(priv)			
 			
 		#funny tidbit, the statement "not isUser" returns true if isUser is not True, even if isUser is NoneType.
 		elif isUser == False:
-			#Registers the user. TODO: allow the user to stop making a new account, needs to be done in RegisterScreen.py
-			uid = RegisterScreen(terminal, terminal.getDBName()).printScreen()
-			
-			#if the user doesn't make a new account, return to main menue (start of loop)
-			if uid is None:
-				continue
-				
-			#checks if the user is a privileged user	
-			priv = check_priv(terminal.getDBName(), uid)
+			#TODO:register, then log in
+			pass
 			
 		else:
 			#Quitting the program, leads to a goodbye message outside of loop.
@@ -83,68 +74,9 @@ if __name__ == "__main__":
 				
 			#TODO: search for posts
 			elif menu == 1:
+				#temporary testing
+				PostScreen(terminal, uid).printAnswerScreen('qfKp')
 				
-				#PseudoCode for when this searchforposts works
-				
-				#Grab the post to perform the action on
-				post = SearchForPostsScreen(terminal)
-				
-				#while the user is still using the menue
-				#while True:
-					#if the post is a question:
-						#Options are:
-							#reply to post
-							#vote on post
-							#exit to menue
-						#if the user is privileged:
-							#edit post
-							#give badge
-							#add tag
-						
-					#elif the post is an answer:
-						#vote on the answer
-						#exit to menue
-						#If the user is privileged:
-							#edit post
-							#give badge
-							#add tag
-							#mark as the accepted answer
-					
-					
-				
-				
-				
-				
-				"""legacy
-				
-				#grab a 
-				post = SearchForPostsScreen(terminal).printScreen()
-				
-				print(post)
-				#print(question)
-				input()
-				
-				terminal.clear()
-				terminal.printCenter("Title:" + post[0][0])
-				
-				
-				if question == True:
-					#question is a question
-					terminal.printCenter("Body:" + post[0][3])
-				else:
-					#question is an answer
-					terminal.printCenter("Body:" + post[0][2])
-				
-				print("\n")
-				stuff = int(input("Please enter an action on this post.\n1) Reply to this post\n2) Vote for this post\n"))
-				#print(stuff)
-				input()
-				
-				#reply to the post
-				if stuff == 1:
-					terminal.clear()
-					PostScreen(terminal, uid).printAnswerScreen(post[0][4])
-				"""
 			#log out of account
 			elif menu == 2:
 				break

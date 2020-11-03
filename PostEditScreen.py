@@ -12,20 +12,17 @@ class PostEditScreen:
 	def printTitleMain(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Editing Post")
-		self.__terminal__.printCenter("The title of the post you are editing is " + self.__post__[0][0])
+		self.__terminal__.printCenter("The title of the post you are editing is " + self.__post__.title)
 	
 	def printTitleSubTitle(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Editing Title")
-		self.__terminal__.printCenter("Current Title: " + self.__post__[0][0])
+		self.__terminal__.printCenter("Current Title: " + self.__post__.title)
 
 	def printTitleSubBody(self):	
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Editing Body")
-		if self.__post__[1]:
-			self.__terminal__.printCenter("Current Body: " + self.__post__[0][3])
-		else:
-			self.__terminal__.printCenter("Current Body: " + self.__post__[0][2])
+		self.__terminal__.printCenter("Current Body: " + self.__post__.body)
 	
 	def getEditType(self):
 		while True:
@@ -41,17 +38,11 @@ class PostEditScreen:
 		if editType == "1":
 			self.printTitleSubTitle()
 			title = input("Enter new title: ")
-			if self.__post__[1]:
-				self.postEdit.changeTitle(post[0][4], title)
-			else:
-				self.postEdit.changeTitle(post[0][3], title)
+			self.__postEdit___.changeTitle(post.title, title)
 		if editType == "2":
 			self.printTitleSubBody()
 			body = input("Enter new body: ")
-			if post[1]:
-				self.__postEdit__.changeBody(post[0][4], body)
-			else:
-				self.__postEdit__.changeBody(post[0][3], body)
+			self.__postEdit__.changeBody(post.body, body)
 		input("Type enter to continue: ")
 
 if __name__ == "__main__":
