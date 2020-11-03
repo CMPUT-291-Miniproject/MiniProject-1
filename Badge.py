@@ -21,6 +21,9 @@ class Badge:
 		uid = cursor.fetchone()[0]
 		
 		cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, badgeName))
+
+		self.__db__.commit()
+
 		cursor.close()
 
 if __name__ == "__main__":
