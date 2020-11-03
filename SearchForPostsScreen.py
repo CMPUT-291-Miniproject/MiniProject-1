@@ -95,6 +95,7 @@ class SearchForPostsScreen:
 			input("Press enter to continue with action taken: ")
 
 	def getMenu(self, index):
+		POSTPERPAGE = 5
 		self.__menu__.clearMenu()
 		if (index + POSTPERPAGE > maxIndex):
 			for post in posts[index:]:
