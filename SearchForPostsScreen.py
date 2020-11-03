@@ -4,8 +4,9 @@ from CheckInput import CheckInput
 from PostQuery import QuestionQuery
 from PostQuery import AnswerQuery
 
+POSTPERPAGE = 5
+
 class SearchForPostsScreen:
-	POSTPERPAGE = 5
 	"""
 	SearchForPostsScreen provides the ui for
 	the search for posts function of the application.
@@ -97,7 +98,6 @@ class SearchForPostsScreen:
 			input("Press enter to continue with action taken: ")
 
 	def getMenu(self, posts, index):
-		POSTPERPAGE = 5
 		maxIndex = len(posts) - 1 
 
 		self.__menu__.clearMenu()
