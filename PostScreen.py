@@ -62,7 +62,7 @@ class PostScreen:
 				print("\n")
 				
 			
-				choice = input("Is this what you want to post? (Y or N):")
+				choice = input("Is this what you want to post? (Y or N): ")
 				
 				#if the user gives the ok to post, break out of all loops and add the post
 				if choice.upper() == "Y":
@@ -125,7 +125,7 @@ class PostScreen:
 				print("\n")
 				
 			
-				choice = input("Is this what you want to post? (Y or N):")
+				choice = input("Is this what you want to post? (Y or N): ")
 				
 				#if the user gives the ok to post, break out of all loops and add the post
 				if choice.upper() == "Y":
