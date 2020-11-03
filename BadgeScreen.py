@@ -8,6 +8,7 @@ class BadgeScreen:
 		self.__badge__ = Badge(terminal.getDBName(), post)
 		self.__post__ = post
 		self.__chkinp__ = CheckInput()
+		self.__badges__ = self.__badge__.getBadgeNames()
 
 	def printTitle(self):
 		self.__terminal__.clear()
@@ -17,14 +18,13 @@ class BadgeScreen:
 	
 	def printBadgeNames(self):
 		print("All Badges\n")
-		badges = self.__badge__.getBadgeNames()
-		for badge in badges:
+		for badge in self.__badges__:
 			print(badge)
 	
 	def printScreen(self):
 		self.printTitle()
 		userInput = input("Enter Name of Badge to Give: ").lower()
-		if userInput in badges:
+		if userInput in self.__badges__:
 			self.__badge__.addBadge(userInput)
 		else:
 			print("Not a type of badge!")
