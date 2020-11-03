@@ -33,7 +33,7 @@ class SelectedPostScreen:
 if __name__ == "__main__":
 	from Terminal import Terminal
 	from SearchForPostsScreen import SearchForPostsScreen
-	sps = SearchForPostsScreen(Terminal(), "Miniproject_1.db")
+	sps = SearchForPostsScreen(Terminal())
 	post = sps.printScreen()
 	sps = SelectedPostScreen(Terminal(), post, False)
 	print(sps.printScreen())
