@@ -1,5 +1,6 @@
 import sqlite3 
-import PostQuery
+from PostQuery import QuestionQuery
+from PostQuery import AnswerQuery
 
 class SearchForPosts:
 	def __init__(self, dbName):
