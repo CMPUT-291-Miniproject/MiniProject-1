@@ -9,8 +9,11 @@ class SearchForPosts:
 		answers = self.getAnswers(keywords)
 		postList = questions + answers
 		postList.sort(key = lambda x:x[1], reverse=True)
-		print(postList)
-		return postList
+
+		sortedList = []
+		for post in postList:
+			sortedList.append(post[0])
+		return sortedList
 		
 
 	def getQuestions(self, keywords):
@@ -70,7 +73,6 @@ class SearchForPosts:
 			QuestionQuery = namedtuple('QuestionQuery', ['title', 'voteCount', 'answerCount', 'body', 'pid'])
 			cursorResult = cursor.fetchone()
 			questions.append([QuestionQuery(cursorResult[0],cursorResult[1],cursorResult[2],cursorResult[3],cursorResult[4]), post[1]])
-			questions.append([cursor.fetchone(), post[1], True])
 		return questions
 		
 	def getAnswers(self, keywords):

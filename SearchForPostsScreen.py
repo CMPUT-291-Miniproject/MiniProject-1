@@ -3,6 +3,7 @@ from Menu import Menu
 from CheckInput import CheckInput
 
 class SearchForPostsScreen:
+POSTPERPAGE = POSTPERPAGE
 	"""
 	SearchForPostsScreen provides the ui for
 	the search for posts function of the application.
@@ -42,16 +43,12 @@ class SearchForPostsScreen:
 		inputMessage = "Type number next to desired post (n for next) (p for prev): "
 		
 		while not postSelected:
-			self.__menu__.clearMenu()
+			manyRemainingPosts = self.getMenu()
 			self.printTitlePostSelect()
-			if (index + 5 > maxIndex):
-				for post in posts[index:]:
-					if post[2]:
-						self.__menu__.addMenuItem(str(post[0][0])+ " | " + str(post[0][1]) + " | " + str(post[0][2]))
-					else:
-						self.__menu__.addMenuItem(str(post[0][0]) + " | " + str(post[0][1]))
+			
 				self.__menu__.printItems()
 
+			if not manyRemainingPosts:
 				userInput = input(inputMessage)
 				if self.__chkinp__.checkAlphaNumeric(userInput):
 					if self.__chkinp__.checkEscape(userInput):
@@ -65,19 +62,16 @@ class SearchForPostsScreen:
 					elif isPost is None:
 						if userInput == "n":
 							print("No posts on next page")
-						elif userInput == "p" and index - 5 < 0:
+						elif userInput == "p" and index - POSTPERPAGE < 0:
 							print("No posts on previous page")
-						elif userInput == "p" and index - 5 >= 0:
-							index -= 5
+						elif userInput == "p" and index - POSTPERPAGE >= 0:
+							index -= POSTPERPAGE
 						else:
 							print("Invalid input!")
 				else:
 					print("Your input contains a character that is neither a letter or a number!")
+
 			else:
-				for i in range(index, index+5):
-					self.__menu__.addMenuItem(str(posts[i][0][0]) + " | " + str(posts[i][0][1]) + " | " + str(posts[i][0][2]))
-				self.__menu__.printItems()
-				
 				userInput = input(inputMessage)
 				if self.__chkinp__.checkAlphaNumeric(userInput):
 					if self.__chkinp__.checkEscape(userInput):
@@ -90,16 +84,33 @@ class SearchForPostsScreen:
 						print("Selection is outside of possible range!")
 					elif isPost is None:
 						if userInput == "n":
-							index += 5
-						elif userInput == "p" and index - 5 >= 0:
-							index -= 5
-						elif userInput == "p" and index -5 <= 0:
+							index += POSTPERPAGE
+						elif userInput == "p" and index - POSTPERPAGE >= 0:
+							index -= POSTPERPAGE
+						elif userInput == "p" and index - POSTPERPAGE <= 0:
 							print("No posts on previous page")
 						else:
 							print("Invalid input!")					
 				else:
 					print("Your input contains a character that is netiher a letter or a number!")
 			input("Press enter to continue with action taken: ")
+
+	def getMenu(self):
+		self.__menu__.clearMenu()
+		if (index + POSTPERPAGE > maxIndex):
+				for post in posts[index:]:
+					if isinstance(post, QuestionQuery):
+						self.__menu__.addMenuItem(str(post.title)+ " | " + str(post.voteCount) + " | " + str(post.answerCount))
+					else:
+						self.__menu__.addMenuItem(str(post.title) + " | " + str(post.voteCount))
+			return False
+		else:
+			for i in range(index, index+POSTPERPAGE):
+					if isinstance(post, QuestionQuery):
+						self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount) + " | " + str(posts[i].answerCount))
+					else:
+						self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount))
+			return True
 if __name__ == "__main__":
 	from Terminal import Terminal
 	searchPostScreen = SearchForPostsScreen(Terminal())
