@@ -25,7 +25,7 @@ class BadgeScreen:
 		self.printTitle()
 		userInput = input("Enter Name of Badge to Give: ").lower()
 		if userInput in self.__badges__:
-			self.__badge__.addBadge(userInput)
+			self.__badge__.addBadge(userInput, self.__post__.pid)
 		else:
 			print("Not a type of badge!")
 		

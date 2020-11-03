@@ -20,7 +20,7 @@ class Badge:
 		cursor.execute("SELECT poster FROM posts WHERE pid = ?", (pid,))
 		uid = cursor.fetchone()[0]
 		
-		cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid,userInput))
+		cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, userInput))
 		cursor.close()
 
 if __name__ == "__main__":
