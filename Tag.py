@@ -1,10 +1,18 @@
 import sqlite3
 
 class Tag:
+	"""
+	
+	"""
 	def __init__(self, dbName):
+		"""
+
+		"""
 		self.__connection__ = sqlite3.connect(dbName)
 	
 	def addTag(self, pid, tag):
+		"""
+		"""
 		tag = tag.upper()
 		cursor = self.__connection__.cursor()
 		cursor.execute("SELECT tag FROM tags WHERE pid = ? AND tag LIKE(?)", (pid, "%"+tag+"%"))

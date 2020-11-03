@@ -1,5 +1,7 @@
 from Tag import Tag
 from CheckInput import CheckInput
+from PostQuery import QuestionQuery
+from PostQuery import AnswerQuery
 
 class TagScreen:
 	def __init__(self, terminal, post):
@@ -11,7 +13,7 @@ class TagScreen:
 	def printTitle(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Tag the post")
-		self.__terminal__.printCenter("The post you are currently tagging has the title " + self.__post__[0][0])
+		self.__terminal__.printCenter("The post you are currently tagging has the title " + self.__post__.title)
 
 	def printScreen(self):
 		self.printTitle()
@@ -24,10 +26,7 @@ class TagScreen:
 					return None
 				if self.__chkinp__.checkAlphaNumeric(userInput):
 					invalidInput = False
-			if post[1]:
-				self.__tag__.addTag(post[0][4], userInput)
-			else:
-				self.__tag__.addTag(post[0][3], userInput)
+			self.__tag__.addTag(post.pid, userInput)
 		except Exception as e:
 			print(e)
 		else:

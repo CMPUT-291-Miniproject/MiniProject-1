@@ -59,7 +59,7 @@ class SearchForPostsScreen:
 					isPost = self.__menu__.isNumericalSelection(userInput)
 					if isPost:
 						selectedPost = posts[index+int(userInput)-1]
-						return(selectedPost[0], [1])
+						return(selectedPost)
 					elif isPost is False:
 						print("Selection is outside of possible range!")
 					elif isPost is None:
@@ -82,7 +82,7 @@ class SearchForPostsScreen:
 					isPost = self.__menu__.isNumericalSelection(userInput)
 					if isPost:
 						selectedPost = posts[index+int(userInput)-1]
-						return(selectedPost[0], selectedPost[2])
+						return(selectedPost)
 					elif isPost is False:
 						print("Selection is outside of possible range!")
 					elif isPost is None:
@@ -116,6 +116,7 @@ class SearchForPostsScreen:
 				else:
 					self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount))
 			return True
+			
 if __name__ == "__main__":
 	from Terminal import Terminal
 	searchPostScreen = SearchForPostsScreen(Terminal())
