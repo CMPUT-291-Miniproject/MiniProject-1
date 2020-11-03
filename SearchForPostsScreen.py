@@ -49,7 +49,6 @@ class SearchForPostsScreen:
 			manyRemainingPosts = self.getMenu(posts, index)
 			self.printTitlePostSelect()
 			self.__menu__.printItems()
-			print(len(posts))
 
 			if not manyRemainingPosts:
 				userInput = input(inputMessage)
@@ -59,7 +58,7 @@ class SearchForPostsScreen:
 					isPost = self.__menu__.isNumericalSelection(userInput)
 					if isPost:
 						selectedPost = posts[index+int(userInput)-1]
-						return(selectedPost[0], [1])
+						return(selectedPost)
 					elif isPost is False:
 						print("Selection is outside of possible range!")
 					elif isPost is None:
@@ -82,7 +81,7 @@ class SearchForPostsScreen:
 					isPost = self.__menu__.isNumericalSelection(userInput)
 					if isPost:
 						selectedPost = posts[index+int(userInput)-1]
-						return(selectedPost[0], selectedPost[2])
+						return(selectedPost)
 					elif isPost is False:
 						print("Selection is outside of possible range!")
 					elif isPost is None:

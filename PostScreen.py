@@ -148,5 +148,5 @@ class PostScreen:
 
 if __name__ == "__main__":
 	
-	postQuestionScreen = PostQuestionScreen(Terminal(), 'Miniproject_1.db')
-	postQuestionScreen.printScreen()
+	postScreen = PostScreen(Terminal(), 'Miniproject_1.db')
+	postScreen.printQuestionScreen()

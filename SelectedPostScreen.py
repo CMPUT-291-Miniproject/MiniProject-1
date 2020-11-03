@@ -23,6 +23,7 @@ class SelectedPostScreen:
 
 	def printTitle(self):
 		self.__terminal__.clear()
+		print(self.__post__)
 		self.__terminal__.printCenter(self.__post__.title)
 		self.__terminal__.printCenter(self.__post__.body)
 
