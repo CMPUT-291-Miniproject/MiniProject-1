@@ -67,6 +67,9 @@ class SearchForPosts:
 						WHERE p.pid = q.pid GROUP BY p.pid
 					) as v
 					WHERE v.pid = p.pid AND p.pid = a.pid AND p.pid LIKE (?)''', (str(post[0]),))
+			QuestionQuery = namedtuple('QuestionQuery', ['title', 'voteCount', 'answerCount', 'body', 'pid'])
+			cursorResult = cursor.fetchone()
+			questions.append([QuestionQuery(cursorResult[0],cursorResult[1],cursorResult[2],cursorResult[3],cursorResult[4]), post[1]])
 			questions.append([cursor.fetchone(), post[1], True])
 		return questions
 		
@@ -116,7 +119,9 @@ class SearchForPosts:
 					WHERE p.pid = a.pid GROUP BY p.pid
 				) as v
 				WHERE v.pid = p.pid AND p.pid = a.pid AND p.pid like (?)''', (str(post[0]),))
-			answers.append([cursor.fetchone(), post[1], False])
+			AnswerQuery = namedtuple('AnswerQuery', ['title', 'voteCount', 'body', 'pid'])
+			cursorResult = cursor.fetchone()
+			answers.append([AnswerQuery(cursorResult[0],cursorResult[1],cursorResult[2],cursorResult[3]), post[1]])
 		return answers
 			
 			
