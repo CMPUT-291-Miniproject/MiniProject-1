@@ -18,6 +18,7 @@ class Badge:
 		cursor = self.__db__.cursor()
 		
 		cursor.execute("SELECT poster FROM posts WHERE pid = ?", (pid,))
+		print(cursor.fetchone())
 		uid = cursor.fetchone()[0]
 		
 		cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, badgeName))
