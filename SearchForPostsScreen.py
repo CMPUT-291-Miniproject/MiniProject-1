@@ -43,7 +43,7 @@ class SearchForPostsScreen:
 		inputMessage = "Type number next to desired post (n for next) (p for prev): "
 		
 		while not postSelected:
-			manyRemainingPosts = self.getMenu(posts, index, maxIndex)
+			manyRemainingPosts = self.getMenu(posts, index)
 			self.printTitlePostSelect()
 			self.__menu__.printItems()
 
@@ -97,7 +97,7 @@ class SearchForPostsScreen:
 	def getMenu(self, posts, index):
 		POSTPERPAGE = 5
 		maxIndex = len(posts) - 1 
-		
+
 		self.__menu__.clearMenu()
 		if (index + POSTPERPAGE > maxIndex):
 			for post in posts[index:]:
