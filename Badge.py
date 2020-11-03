@@ -19,8 +19,11 @@ class Badge:
 		
 		cursor.execute("SELECT poster FROM posts WHERE pid = ?", (pid,))
 		uid = cursor.fetchone()[0]
-		
-		cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, badgeName))
+
+		try:
+			cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, badgeName))
+		except sqlite3.IntegrityError as integError:
+			print("Cannot give a user multiple badges in one day!")
 
 		self.__db__.commit()
 
