@@ -85,14 +85,14 @@ class PostEditScreen:
 		if editType == "1":
 			self.printTitleSubTitle()
 			title = input("Enter new title: ")
-			self.__postEdit__.changeTitle(post.pid, title)
+			self.__postEdit__.changeTitle(self.__post__.pid, title)
 		elif editType == "2":
 			self.printTitleSubBody()
 			body = input("Enter new body: ")
-			self.__postEdit__.changeBody(post.pid, body)
+			self.__postEdit__.changeBody(self.__post__.pid, body)
 		elif editType is None:
 			return None
-		input("Type enter to continue: ")
+		input("Post has been changed. To see the change, please refresh the post. Type enter to continue: ")
 
 if __name__ == "__main__":
 	from Terminal import Terminal

@@ -80,25 +80,14 @@ if __name__ == "__main__":
 				PostScreen(terminal, uid).printQuestionScreen()
 				
 			#search for posts
-			elif menu == 1:
-				#temporary testing
-				PostScreen(terminal, uid).printAnswerScreen('qfKp')
-				
-				#PseudoCode for when this searchforposts works
+			elif menu == 1:				
+				#PseudoCode for how searchforposts works
 				
 				#Grab the post to perform the action on, 
 				#Returned as a tuple in the form (title, votecount, answer count, body, pid) for questions
 				#Returned as a tuple in the form (title, votecount, body, pid) for answers
 				#difference is isinstance(x, QuestionQuery)
-				post = SearchForPostsScreen(terminal).printScreen()
-				
-				"""testing
-				print(post)
-				print(post[0])
-				if isinstance(post, QuestionQuery):
-					print("YES")
-				"""
-				
+				post = SearchForPostsScreen(terminal).printScreen()				
 
 				#while the user is still using the menue
 				while True:
