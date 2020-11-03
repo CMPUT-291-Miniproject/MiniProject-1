@@ -108,7 +108,7 @@ class SearchForPostsScreen:
 			return False
 		else:
 			for i in range(index, index+POSTPERPAGE):
-				if isinstance(post, QuestionQuery):
+				if isinstance(posts[i], QuestionQuery):
 					self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount) + " | " + str(posts[i].answerCount))
 				else:
 					self.__menu__.addMenuItem(str(posts[i].title) + " | " + str(posts[i].voteCount))
