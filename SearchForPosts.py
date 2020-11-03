@@ -1,5 +1,5 @@
 import sqlite3 
-
+from collections import namedtuple
 class SearchForPosts:
 	def __init__(self, dbName):
 		self.__db__ = sqlite3.connect(dbName)
