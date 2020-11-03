@@ -35,19 +35,19 @@ class RegisterScreen:
 			self.printTitle()
 
 			userID = input("Enter Desired UserID: ")
-			if self.__checkInput__.checkEscape(userID):
+			if self.__checkInput__.checkEscape(userID) or userID.lower().strip() == 'exit':
 				return None			
 
 			name = input("Your Name: ")
-			if self.__checkInput__.checkEscape(name):
+			if self.__checkInput__.checkEscape(name) or userID.lower().strip() == 'exit':
 				return None
 
 			city = input("Your City: ")
-			if self.__checkInput__.checkEscape(city):
+			if self.__checkInput__.checkEscape(city) or userID.lower().strip() == 'exit':
 				return None
 
 			password = input("Enter Desired Password: ")
-			if self.__checkInput__.checkEscape(password):
+			if self.__checkInput__.checkEscape(password) or userID.lower().strip() == 'exit':
 				return None
 			
 			print("\n\n\n")
@@ -65,6 +65,7 @@ class RegisterScreen:
 		self.__terminal__.printCenter("--Name must contain only letters--")
 		self.__terminal__.printCenter("--City must contain only letters--")
 		self.__terminal__.printCenter("--password must contain only alphanumeric characters--")
+		self.__terminal__.printCenter("--Press escape or input exit at any time to go back.")
 
 if __name__ == "__main__":
 	from Terminal import Terminal

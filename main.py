@@ -1,6 +1,7 @@
 import sqlite3
 from Terminal import Terminal
 from LoginScreen import LoginScreen
+from RegisterScreen import RegisterScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
 from PostScreen import PostScreen
@@ -11,6 +12,7 @@ from Vote import Vote
 from PostEditScreen import PostEditScreen
 from BadgeScreen import BadgeScreen
 from TagScreen import TagScreen
+from MarkAccepted import AcceptedAnswer
 #dbName = 'Miniproject_1.db'
 
 def check_priv(dbName, uid):
@@ -54,7 +56,8 @@ if __name__ == "__main__":
 		if isUser:
 			#log the user in
 			uid = LoginScreen(terminal).log_in()
-			
+			if uid is None:
+				continue
 			#checks if the user is a privileged user
 			priv = check_priv(terminal.getDBName(), uid)
 			#testing below
@@ -62,8 +65,12 @@ if __name__ == "__main__":
 			
 		#funny tidbit, the statement "not isUser" returns true if isUser is not True, even if isUser is NoneType.
 		elif isUser == False:
-			#TODO:register, then log in
-			pass
+			#register, then log in
+			uid = RegisterScreen(terminal, terminal.getDBName()).printScreen()
+			if uid is None:
+				continue
+			
+			priv = check_priv(terminal.getDBName(), uid)
 			
 		else:
 			#Quitting the program, leads to a goodbye message outside of loop.
@@ -77,6 +84,7 @@ if __name__ == "__main__":
 			
 			#post question
 			if menu == 0:
+				terminal.clear()
 				PostScreen(terminal, uid).printQuestionScreen()
 				
 			#search for posts
@@ -119,6 +127,7 @@ if __name__ == "__main__":
 							
 							#reply to post
 							if choice == '1':
+								terminal.clear()
 								PostScreen(terminal, uid).printAnswerScreen(post[4])
 								
 							#upvote post. Checks to see if user has voted on the post before adding vote
@@ -155,6 +164,7 @@ if __name__ == "__main__":
 							
 							#reply to post
 							if choice == '1':
+								terminal.clear()
 								PostScreen(terminal, uid).printAnswerScreen(post[4])
 								
 							#upvote post. Checks to see if user has voted on the post before adding vote
@@ -224,7 +234,8 @@ if __name__ == "__main__":
 							#TODO: Mark accepted answer
 							elif choice == '5':
 								#TODO: mark accepted answer
-								pass
+								AcceptedAnswer(terminal, post[3]).acceptAnswer()
+								input("Successfully set the answer as the accepted answer. Press enter to continue:")
 								
 							#exit back to main menu
 							elif choice == '6':

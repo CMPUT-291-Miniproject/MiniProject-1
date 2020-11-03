@@ -22,8 +22,9 @@ class Badge:
 
 		try:
 			cursor.execute("INSERT INTO ubadges VALUES(?, DATE('now'), ?)", (uid, badgeName))
+			input("Gave the user the badge. Press enter to continue:")
 		except sqlite3.IntegrityError as integError:
-			print("Cannot give a user multiple badges in one day!")
+			input("Cannot give a user multiple badges in one day! Press enter to continue:")
 
 		self.__db__.commit()
 

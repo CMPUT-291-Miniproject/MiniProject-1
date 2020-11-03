@@ -38,10 +38,10 @@ class LoginScreen:
 			self.__terminal__.clear()
 			self.__terminal__.printCenter("---LOGIN---")
 			print("\n")
-			uid = input("Please enter your UID, or enter \"register\" to create an account. ")
+			uid = input("Please enter your UID, or enter \"exit\" to go back. ").lower().strip()
 			
 			#If the user opts to register, exits the function
-			if uid == "register":
+			if uid == "exit":
 				return None
 			#If the uid is not exactly 4 character long, restart loop
 			elif len(uid) != 4:
