@@ -1,6 +1,7 @@
 from SearchForPosts import SearchForPosts
 from Menu import Menu
 from CheckInput import CheckInput
+import PostQuery
 
 class SearchForPostsScreen:
 	POSTPERPAGE = 5
