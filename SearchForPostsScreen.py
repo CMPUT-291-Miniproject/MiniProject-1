@@ -3,7 +3,7 @@ from Menu import Menu
 from CheckInput import CheckInput
 
 class SearchForPostsScreen:
-POSTPERPAGE = 5
+	POSTPERPAGE = 5
 	"""
 	SearchForPostsScreen provides the ui for
 	the search for posts function of the application.
