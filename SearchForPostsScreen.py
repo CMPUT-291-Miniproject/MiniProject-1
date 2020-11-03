@@ -45,8 +45,7 @@ class SearchForPostsScreen:
 		while not postSelected:
 			manyRemainingPosts = self.getMenu()
 			self.printTitlePostSelect()
-			
-				self.__menu__.printItems()
+			self.__menu__.printItems()
 
 			if not manyRemainingPosts:
 				userInput = input(inputMessage)
