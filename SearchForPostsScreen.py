@@ -43,7 +43,7 @@ class SearchForPostsScreen:
 		inputMessage = "Type number next to desired post (n for next) (p for prev): "
 		
 		while not postSelected:
-			manyRemainingPosts = self.getMenu()
+			manyRemainingPosts = self.getMenu(index)
 			self.printTitlePostSelect()
 			self.__menu__.printItems()
 
@@ -94,7 +94,7 @@ class SearchForPostsScreen:
 					print("Your input contains a character that is netiher a letter or a number!")
 			input("Press enter to continue with action taken: ")
 
-	def getMenu(self):
+	def getMenu(self, index):
 		self.__menu__.clearMenu()
 		if (index + POSTPERPAGE > maxIndex):
 			for post in posts[index:]:
