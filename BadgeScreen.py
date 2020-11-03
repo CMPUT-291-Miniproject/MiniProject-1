@@ -12,7 +12,7 @@ class BadgeScreen:
 	def printTitle(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Add Badge to Post")
-		self.__terminal__.printCenter("Adding a badge to post with title: " + self.__post__[0][0])
+		self.__terminal__.printCenter("Adding a badge to post with title: " + self.__post__.title)
 		self.printBadgeNames()
 	
 	def printBadgeNames(self):
@@ -24,13 +24,10 @@ class BadgeScreen:
 	def printScreen(self):
 		self.printTitle()
 		userInput = input("Enter Name of Badge to Give: ").lower()
-		if self.__chkinp__.checkAlpha(userInput):
-			if userInput in badges:
-				self.__badge__.addBadge(userInput)
-			else:
-				print("Not a type of badge!")
+		if userInput in badges:
+			self.__badge__.addBadge(userInput)
 		else:
-			print("Invalid characters entered!")
+			print("Not a type of badge!")
 		
 if __name__ == "__main__":
 	from Terminal import Terminal
