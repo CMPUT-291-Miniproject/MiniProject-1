@@ -1,7 +1,6 @@
 import sqlite3
 from Terminal import Terminal
 from LoginScreen import LoginScreen
-from RegisterScreen import RegisterScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
 from PostScreen import PostScreen
@@ -39,9 +38,7 @@ def check_priv(dbName, uid):
 		return False
 	else:
 		return True
-		
 
-"""START OF PROGRAM"""
 if __name__ == "__main__":
 	terminal = Terminal()
 
@@ -59,19 +56,14 @@ if __name__ == "__main__":
 			uid = LoginScreen(terminal).log_in()
 			
 			#checks if the user is a privileged user
-			priv = check_priv(terminal.getDBName(), uid)			
+			priv = check_priv(terminal.getDBName(), uid)
+			#testing below
+			#print(priv)			
 			
 		#funny tidbit, the statement "not isUser" returns true if isUser is not True, even if isUser is NoneType.
 		elif isUser == False:
-			#Registers the user. TODO: allow the user to stop making a new account, needs to be done in RegisterScreen.py
-			uid = RegisterScreen(terminal, terminal.getDBName()).printScreen()
-			
-			#if the user doesn't make a new account, return to main menue (start of loop)
-			if uid is None:
-				continue
-				
-			#checks if the user is a privileged user	
-			priv = check_priv(terminal.getDBName(), uid)
+			#TODO:register, then log in
+			pass
 			
 		else:
 			#Quitting the program, leads to a goodbye message outside of loop.
@@ -89,6 +81,8 @@ if __name__ == "__main__":
 				
 			#search for posts
 			elif menu == 1:
+				#temporary testing
+				PostScreen(terminal, uid).printAnswerScreen('qfKp')
 				
 				#PseudoCode for when this searchforposts works
 				
@@ -276,7 +270,7 @@ if __name__ == "__main__":
 							
 							
 				#end of search posts, including all of the options for selected post
-				
+
 			#log out of account
 			elif menu == 2:
 				break

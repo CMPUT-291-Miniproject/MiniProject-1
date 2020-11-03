@@ -8,29 +8,26 @@ class BadgeScreen:
 		self.__badge__ = Badge(terminal.getDBName(), post)
 		self.__post__ = post
 		self.__chkinp__ = CheckInput()
+		self.__badges__ = self.__badge__.getBadgeNames()
 
 	def printTitle(self):
 		self.__terminal__.clear()
 		self.__terminal__.printCenter("Add Badge to Post")
-		self.__terminal__.printCenter("Adding a badge to post with title: " + self.__post__[0][0])
+		self.__terminal__.printCenter("Adding a badge to post with title: " + self.__post__.title)
 		self.printBadgeNames()
 	
 	def printBadgeNames(self):
 		print("All Badges\n")
-		badges = self.__badge__.getBadgeNames()
-		for badge in badges:
+		for badge in self.__badges__:
 			print(badge)
 	
 	def printScreen(self):
 		self.printTitle()
 		userInput = input("Enter Name of Badge to Give: ").lower()
-		if self.__chkinp__.checkAlpha(userInput):
-			if userInput in badges:
-				self.__badge__.addBadge(userInput)
-			else:
-				print("Not a type of badge!")
+		if userInput in self.__badges__:
+			self.__badge__.addBadge(userInput, self.__post__.pid)
 		else:
-			print("Invalid characters entered!")
+			print("Not a type of badge!")
 		
 if __name__ == "__main__":
 	from Terminal import Terminal
