@@ -46,10 +46,9 @@ class TagScreen:
 		invalidInput = True
 		
 		try:
-			while invalidInput:
-				userInput = input("Enter tag you would like to add to the post: ")
-				if self.__chkinp__.checkEscape(userInput):
-					return None
+			userInput = input("Enter tag you would like to add to the post: ")
+			if self.__chkinp__.checkEscape(userInput):
+				return None
 			self.__tag__.addTag(post.pid, userInput)
 		except Exception as e:
 			print(e)
