@@ -1,4 +1,6 @@
 import sqlite3
+from PostQuery import QuestionQuery
+from PostQuery import AnswerQuery
 class PostEdit():
 	"""
 	PostEdit handles PostEditScreen's calls to database
@@ -7,7 +9,7 @@ class PostEdit():
 	with the database
 	"""
 
-	def __init__(self, dbName):
+	def __init__(self, dbName, post):
 		"""
 		Creates an instance of PostEdit, which is an interface that handles 
 		calls to the database from PostEditScreen
@@ -18,6 +20,7 @@ class PostEdit():
 		Returns: An instance of PostEdit
 		"""
 		self.__db__ = sqlite3.connect(dbName)	
+		self.__post__ = post
 
 	def changeTitle(self, pid, title):
 		"""

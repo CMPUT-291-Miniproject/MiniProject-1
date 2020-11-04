@@ -24,7 +24,7 @@ class PostEditScreen:
 		"""
 		self.__terminal__ = terminal
 		self.__post__ = post
-		self.__postEdit__ = PostEdit(terminal.getDBName())		
+		self.__postEdit__ = PostEdit(terminal.getDBName(), post)		
 		self.__chkinp__ = CheckInput()		
 
 	def printTitleMain(self):
