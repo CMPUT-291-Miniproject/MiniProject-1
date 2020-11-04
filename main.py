@@ -144,6 +144,9 @@ if __name__ == "__main__":
 							#TODO: edits posts (needs fix)
 							elif choice == '3':
 								newPost = PostEditScreen(terminal, post).printScreen()
+								print(post)
+								print(newPost)
+								input("Press enter to continue: ")
 								if newPost is not None:
 									post = newPost
 							
@@ -224,8 +227,12 @@ if __name__ == "__main__":
 									
 							#TODO: edits posts (needs fix)
 							elif choice == '2':
-								PostEditScreen(terminal, post).printScreen()
-								
+								newPost = PostEditScreen(terminal, post).printScreen()
+								print(post)
+								print(newPost)
+								input("Press enter to continue: ")
+								if(newPost is not None):
+									post = newPost
 							#TODO: add badge (needs fix)	
 							elif choice == '3':
 								BadgeScreen(terminal, post).printScreen()
