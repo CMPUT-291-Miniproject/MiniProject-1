@@ -35,6 +35,7 @@ class PostEdit():
 		cursor.execute("UPDATE posts SET title = ? WHERE pid = ?", (title, pid))
 		self.__db__.commit()
 		cursor.close()
+		return self.updatePost()
 
 	def changeBody(self, pid, body):
 		"""
@@ -52,6 +53,21 @@ class PostEdit():
 		cursor.execute("UPDATE posts SET body = ? WHERE pid = ?", (body, pid))
 		self.__db__.commit()
 		cursor.close()
+		return self.updatePost()
+
+	def updatePost(self):
+		"""
+		Updates post after an edit
+
+		Returns:
+			A PostQuery object
+		"""
+		c = self.__db__.cursor()
+		c.execute("SELECT title, body FROM posts WHERE pid = ?", (self.__post__.pid,))
+		post = cursor.fetchone()
+		self.__post__.title = post[0]
+		self.__post__.body = post[1]
+		return post
 
 if __name__ == "__main__":
 	pid = "6JcK"

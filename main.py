@@ -143,7 +143,9 @@ if __name__ == "__main__":
 									
 							#TODO: edits posts (needs fix)
 							elif choice == '3':
-								PostEditScreen(terminal, post).printScreen()
+								newPost = PostEditScreen(terminal, post).printScreen()
+								if newPost is not None:
+									post = newPost
 							
 							#TODO: adds badge (needs fix)
 							elif choice == '4':

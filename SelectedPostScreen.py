@@ -1,6 +1,7 @@
 from Menu import Menu
 from PostQuery import QuestionQuery
 from PostQuery import AnswerQuery
+
 class SelectedPostScreen:
 	"""
 	A screen which handles options that can be taken
@@ -71,6 +72,8 @@ class SelectedPostScreen:
 		"""
 		self.printTitle()
 		return self.__menu__.printScreen()
+
+
 
 if __name__ == "__main__":
 	from Terminal import Terminal

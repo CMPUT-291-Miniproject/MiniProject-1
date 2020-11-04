@@ -80,16 +80,19 @@ class PostEditScreen:
 
 		Returns:
 			None if user exits
+			PostQuery object if user updates post
 		"""
 		editType = self.getEditType()
 		if editType == "1":
 			self.printTitleSubTitle()
 			title = input("Enter new title: ")
-			self.__postEdit__.changeTitle(self.__post__.pid, title)
+			post = self.__postEdit__.changeTitle(self.__post__.pid, title)
+			return post
 		elif editType == "2":
 			self.printTitleSubBody()
 			body = input("Enter new body: ")
-			self.__postEdit__.changeBody(self.__post__.pid, body)
+			post = self.__postEdit__.changeBody(self.__post__.pid, body)
+			return post
 		elif editType is None:
 			return None
 		input("Post has been changed. To see the change, please refresh the post. Type enter to continue: ")
