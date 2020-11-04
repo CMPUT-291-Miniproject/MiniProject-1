@@ -10,6 +10,16 @@ class MainMenuScreen:
 	the program
 	"""
 	def __init__(self, terminal):
+		"""
+		Creates an instance of MainMenuScreen
+
+		Parameters:
+			terminal:
+				A Terminal object that allows the module to interface
+				with the OS terminal
+		Returns:
+			An instance of MainMenuScreen
+		"""
 		self.__menu__ = Menu(terminal)
 	
 		self.__menu__.addMenuItem("Post a question")
@@ -18,6 +28,9 @@ class MainMenuScreen:
 		self.__menu__.addMenuItem("Exit Program")
 
 	def printScreen(self):
+		"""
+		Prints MainMenu's menu
+		"""
 		return self.__menu__.printScreen()
 
 if __name__ == "__main__":

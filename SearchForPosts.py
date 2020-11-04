@@ -3,10 +3,38 @@ from PostQuery import QuestionQuery
 from PostQuery import AnswerQuery
 
 class SearchForPosts:
+	"""
+	Handles database queries for SearchForPostsScreen
+
+	This module handles calls to the database and parses the
+	data returned for easier handling
+	"""
 	def __init__(self, dbName):
+		"""
+		Creates an instance of SearchForPosts
+
+		parameters:
+			dbName:
+				A String object containing the name of the
+				database
+		Returns:
+			An instance of SearchForPosts
+		"""
 		self.__db__ = sqlite3.connect(dbName)
 	
 	def getPosts(self, keywords):
+		"""
+		Calls various methods to get a list of questions and answers
+		which contain the keyword in some form and the priority that said post
+		should recieve it then sorts the posts returned by priority before returning a List
+		of PostQueries
+		
+		Parameters:
+			keywords:
+				A List of String objects containing keywords provided by the user
+		Returns:
+			A sorted List of PostQuery objects
+		"""
 		questions = self.getQuestions(keywords)
 		answers = self.getAnswers(keywords)
 		postList = questions + answers
@@ -19,8 +47,17 @@ class SearchForPosts:
 		
 
 	def getQuestions(self, keywords):
-		#Each keyword gets its own list
-		#resulting in a list of lists
+		"""
+		Queries the database to get post IDs of any questions
+		containing any of the keywords in some form
+
+		Parameters:
+			keywords:
+				A List of String objects containing keywords provided by the
+				user
+		Returns:
+			A List of QuestionQuery objects which contain at least one keyword
+		"""
 		postIDs = []
 		posts = []
 
@@ -43,6 +80,7 @@ class SearchForPosts:
 			for pid in matchedPosts:
 				postIDs.append(pid[0])
 		
+		#For each postID returned from the previous query orgainize the data in a more useable manner
 		for postID in postIDs:
 			found = False
 			if len(posts) > 0:
@@ -55,7 +93,7 @@ class SearchForPosts:
 				posts.append([postID, postIDs.count(postID)])		
 		
 			
-		#query database for each postid within posts appends a tuple with the post information and priority of said post to  
+		#For each Post ID query the database and return information about that post which is a question
 		for post in posts:
 			cursor.execute('''SELECT DISTINCT p.title, voteCount, answerCount, p.body, p.pid 
 					FROM posts p, 
@@ -77,15 +115,24 @@ class SearchForPosts:
 		return questions
 		
 	def getAnswers(self, keywords):
-		#Each keyword gets its own list
-		#resulting in a list of lists
+		"""
+		Queries the database to get post IDs of any answers
+		containing any of the keywords in some form
+
+		Parameters:
+			keywords:
+				A List of String objects containing keywords provided by the
+				user
+		Returns:
+			A List of AnswerQuery objects which contain at least one keyword
+		"""
 		postIDs = []
 		posts = []
 
 		answers = []
 		
 		cursor = self.__db__.cursor()
-
+		#For each keyword find the post ID of any answers containing said word
 		for word in keywords:
 			cursor.execute('''
 				SELECT DISTINCT p.pid
@@ -100,6 +147,7 @@ class SearchForPosts:
 			matchedPosts = cursor.fetchall()
 			for pid in matchedPosts:
 				postIDs.append(pid[0])
+		#For each post ID returned by the previous query orgainize that data in a more useful manner
 		for postID in postIDs:
                         found = False
                         if len(posts) > 0:
@@ -110,7 +158,7 @@ class SearchForPosts:
                                         posts.append([postID, postIDs.count(postID)])
                         else:
                                 posts.append([postID, postIDs.count(postID)])
-
+        #For each Post ID query the database and return information about that answer post
 		for post in posts:
 			cursor.execute('''
 				SELECT DISTINCT p.title, voteCount, p.body, p.pid

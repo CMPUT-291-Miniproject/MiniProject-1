@@ -1,9 +1,18 @@
 import sqlite3
 from Terminal import Terminal
 from LoginScreen import LoginScreen
+from RegisterScreen import RegisterScreen
 from WelcomeScreen import WelcomeScreen
 from MainMenuScreen import MainMenuScreen
 from PostScreen import PostScreen
+from SearchForPostsScreen import SearchForPostsScreen
+from PostQuery import QuestionQuery
+from PostQuery import AnswerQuery
+from Vote import Vote
+from PostEditScreen import PostEditScreen
+from BadgeScreen import BadgeScreen
+from TagScreen import TagScreen
+from MarkAccepted import AcceptedAnswer
 #dbName = 'Miniproject_1.db'
 
 def check_priv(dbName, uid):
@@ -47,7 +56,8 @@ if __name__ == "__main__":
 		if isUser:
 			#log the user in
 			uid = LoginScreen(terminal).log_in()
-			
+			if uid is None:
+				continue
 			#checks if the user is a privileged user
 			priv = check_priv(terminal.getDBName(), uid)
 			#testing below
@@ -55,8 +65,12 @@ if __name__ == "__main__":
 			
 		#funny tidbit, the statement "not isUser" returns true if isUser is not True, even if isUser is NoneType.
 		elif isUser == False:
-			#TODO:register, then log in
-			pass
+			#register, then log in
+			uid = RegisterScreen(terminal, terminal.getDBName()).printScreen()
+			if uid is None:
+				continue
+			
+			priv = check_priv(terminal.getDBName(), uid)
 			
 		else:
 			#Quitting the program, leads to a goodbye message outside of loop.
@@ -70,13 +84,193 @@ if __name__ == "__main__":
 			
 			#post question
 			if menu == 0:
+				terminal.clear()
 				PostScreen(terminal, uid).printQuestionScreen()
 				
-			#TODO: search for posts
-			elif menu == 1:
-				#temporary testing
-				PostScreen(terminal, uid).printAnswerScreen('qfKp')
+			#search for posts
+			elif menu == 1:				
+				#PseudoCode for how searchforposts works
 				
+				#Grab the post to perform the action on, 
+				#Returned as a tuple in the form (title, votecount, answer count, body, pid) for questions
+				#Returned as a tuple in the form (title, votecount, body, pid) for answers
+				#difference is isinstance(x, QuestionQuery)
+				post = SearchForPostsScreen(terminal).printScreen()				
+
+				#while the user is still using the menue
+				while True:
+					#clean terminal and print title of post
+					terminal.clear()
+					terminal.printCenter("Title: "+  post[0])
+					#if its a question
+					if isinstance(post, QuestionQuery):
+						#Options are:
+							#reply to post
+							#vote on post
+							#exit to menue
+						#if the user is privileged, also includes:
+							#edit post
+							#give badge
+							#add tag
+						
+						#special line for printing the body, since the location of the body in the tuple is [3], not [2]
+						terminal.printCenter("Body: " + post[3])
+						print("\n")
+						
+						#print the options for the user
+						print("1) Reply to the post\n2) Upvote the post")
+						
+						#privileged user actions only
+						if priv:
+							print("3) Edit Post\n4) Give Badge\n5) Add Tag\n6) Exit")
+							choice = input("Please select which action to take: ")
+							
+							#reply to post
+							if choice == '1':
+								terminal.clear()
+								PostScreen(terminal, uid).printAnswerScreen(post[4])
+								
+							#upvote post. Checks to see if user has voted on the post before adding vote
+							#this simplifies error handling by not allowing errors 
+							elif choice == '2':
+								v = Vote(terminal.getDBName())
+								if v.check_vote(post[4], uid) == False:
+									v.vote(post[4], uid)
+									input("Vote placed. Press enter to continue:")
+								else:
+									input("You have already voted on this post. Press enter to continue:")
+									
+							#TODO: edits posts (needs fix)
+							elif choice == '3':
+								PostEditScreen(terminal, post).printScreen()
+							
+							#TODO: adds badge (needs fix)
+							elif choice == '4':
+								BadgeScreen(terminal, post).printScreen()
+								
+							#TODO: adds badge (needs fix)
+							elif choice == '5':
+								TagScreen(terminal, post).printScreen()
+								
+							#returns back to main menu
+							elif choice == '6':
+								break
+							else:
+								input("Invalid input. Press enter to continue:")
+									
+						else:
+							print("3) Exit")
+							choice = input("Please select which action to take: ").strip()
+							
+							#reply to post
+							if choice == '1':
+								terminal.clear()
+								PostScreen(terminal, uid).printAnswerScreen(post[4])
+								
+							#upvote post. Checks to see if user has voted on the post before adding vote
+							#this simplifies error handling by not allowing errors
+							elif choice == '2':
+								v = Vote(terminal.getDBName())
+								if v.check_vote(post[4], uid) == False:
+									v.vote(post[4], uid)
+									input("Vote placed. Press enter to continue:")
+								else:
+									input("You have already voted on this post. Press enter to continue:")
+									
+							#exit back to main menu
+							elif choice == '3':
+								break
+							else:
+								input("Invalid input. Press enter to continue:")
+							
+						
+					else:
+						#Options are:
+							#vote on the answer
+							#exit to menu
+						#If the user is privileged, also includes:
+							#edit post
+							#give badge
+							#add tag
+							#mark as the accepted answer
+							
+						#print body of post, special due to differences in QuestionQuery and AnswerQuery return
+						terminal.printCenter("Body: " + post[2])
+						print("\n")
+						
+						#print the options for the user
+						print("1) Upvote the post")
+						
+						#for privileged users:
+						if priv:
+							#additional commands
+							print("2) Edit Post\n3) Give Badge\n4) Add Tag\n5) Mark Accepted Answer\n6) Exit")
+							
+							#user choice of commands
+							choice = input("Please select which action to take: ").strip()
+							
+							#upvote post. Checks to see if user has voted on the post before adding vote
+							#this simplifies error handling by not allowing errors 
+							if choice == '1':
+								v = Vote(terminal.getDBName())
+								if v.check_vote(post[3], uid) == False:
+									v.vote(post[3], uid)
+									input("Vote placed. Press enter to continue:")
+								else:
+									input("You have already voted on this post. Press enter to continue:")
+									
+							#TODO: edits posts (needs fix)
+							elif choice == '2':
+								PostEditScreen(terminal, post).printScreen()
+								
+							#TODO: add badge (needs fix)	
+							elif choice == '3':
+								BadgeScreen(terminal, post).printScreen()
+								
+							#TODO: add tags (needs fix)
+							elif choice == '4':
+								TagScreen(terminal, post).printScreen()
+								
+							#TODO: Mark accepted answer
+							elif choice == '5':
+								#TODO: mark accepted answer
+								AcceptedAnswer(terminal, post[3]).acceptAnswer()
+								input("Successfully set the answer as the accepted answer. Press enter to continue:")
+								
+							#exit back to main menu
+							elif choice == '6':
+								break
+							else:
+								input("Invalid input. Press enter to continue:")
+							
+							
+						#non-privileged users
+						else:
+							#print options, only ones are add vote and exit
+							print("2) Exit")
+							
+							#user choice of commands
+							choice = input("Please select which action to take: ").strip()
+							
+							#upvote post. Checks to see if user has voted on the post before adding vote
+							#this simplifies error handling by not allowing errors
+							if choice == '1':
+								v = Vote(terminal.getDBName())
+								if v.check_vote(post[3], uid) == False:
+									v.vote(post[3], uid)
+									input("Vote placed. Press enter to continue:")
+								else:
+									input("You have already voted on this post. Press enter to continue:")
+								
+							#return back to main menu
+							elif choice == '2':
+								break
+							else:
+								input("Invalid input. Press enter to continue:")
+							
+							
+				#end of search posts, including all of the options for selected post
+
 			#log out of account
 			elif menu == 2:
 				break
