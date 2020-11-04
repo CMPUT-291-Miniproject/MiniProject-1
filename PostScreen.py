@@ -38,6 +38,7 @@ class PostScreen:
 		
 		#Main input loop, runs until user input is valid, or they quit out of the menue.
 		while repeat:
+			self.__terminal__.clear()
 			self.__terminal__.printCenter("---POSTING QUESTION---")
 			self.__terminal__.printCenter("To go back without posting a question, input BACK during any prompt.")
 			print('\n')
@@ -70,15 +71,16 @@ class PostScreen:
 					break
 				#if the user wants to change their post, repeat main loop but break this input loop
 				elif choice.upper() == 'N':
+					input("Press enter to continue:")
 					break
 				#Any other input repeats the input loop
 				else:
 					input("Invalid input. Press enter to continue.")
 				
-			#adds the question to the database and alerts the user that the operation was a success.
-			self.__body__.add_post(title, body)
-			input("Your question has been posted. Press enter to return back to the main menue.")
-			return
+		#adds the question to the database and alerts the user that the operation was a success.
+		self.__body__.add_post(title, body)
+		input("Your question has been posted. Press enter to return back to the main menue.")
+		return
 					
 	def printAnswerScreen(self, pid):
 		"""
