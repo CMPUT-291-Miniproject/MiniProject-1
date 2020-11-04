@@ -70,7 +70,7 @@ class PostEditScreen:
 			userInput = input("Select what you would like to edit: ")
 			if (userInput == "1" or userInput == "2"):
 				return userInput
-			elif (self.__chkinp__.isEscape(userInput)):
+			elif (self.__chkinp__.checkEscape(userInput)):
 				return None
 	
 	def printScreen(self):
