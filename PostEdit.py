@@ -69,10 +69,11 @@ class PostEdit():
 		c.execute("SELECT title, body FROM posts WHERE pid = ?", (self.__post__.pid,))
 		post = c.fetchone()
 
-		print(isinstance(post, QuestionQuery))
+		print(isinstance(self.__post__, QuestionQuery))
+		print(self.__post__)
 		input("Is this a question: ")
 
-		if isinstance(post, QuestionQuery):
+		if isinstance(self.__post__, QuestionQuery):
 			returnPost = QuestionQuery(post[0], self.__post__.voteCount, self.__post__.answerCount, post[1], self.__post__.pid)
 		else:
 			returnPost = AnswerQuery(post[0], self.__post__.voteCount, post[1], self.__post__.pid)
