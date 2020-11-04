@@ -84,7 +84,6 @@ if __name__ == "__main__":
 			
 			#post question
 			if menu == 0:
-				terminal.clear()
 				PostScreen(terminal, uid).printQuestionScreen()
 				
 			#search for posts
