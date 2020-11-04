@@ -72,8 +72,6 @@ class PostEdit():
 			returnPost = QuestionQuery(post[0], self.__post__.voteCount, self.__post__.answerCount, post[1], self.__post__.pid)
 		else:
 			returnPost = AnswerQuery(post[0], self.__post__.voteCount, post[1], self.__post__.pid)
-		print(returnPost)
-		input("Enter to continue: ")
 		return returnPost
 
 if __name__ == "__main__":
