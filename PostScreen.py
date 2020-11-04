@@ -72,7 +72,7 @@ class PostScreen:
 				#if the user wants to change their post, repeat main loop but break this input loop
 				elif choice.upper() == 'N':
 					input("Press enter to continue:")
-					break
+					return None
 				#Any other input repeats the input loop
 				else:
 					input("Invalid input. Press enter to continue.")
