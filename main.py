@@ -99,6 +99,8 @@ if __name__ == "__main__":
 				#while the user is still using the menue
 				while True:
 					#clean terminal and print title of post
+					if post is None:
+						break
 					terminal.clear()
 					terminal.printCenter("Title: "+  post[0])
 					#if its a question
