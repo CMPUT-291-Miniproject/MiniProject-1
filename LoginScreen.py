@@ -38,7 +38,7 @@ class LoginScreen:
 			self.__terminal__.clear()
 			self.__terminal__.printCenter("---LOGIN---")
 			print("\n")
-			uid = input("Please enter your UID, or enter \"exit\" to go back. ").lower().strip()
+			uid = input("Please enter your UID, or enter \"exit\" to go back. ").strip()
 			
 			#If the user opts to register, exits the function
 			if uid == "exit":
