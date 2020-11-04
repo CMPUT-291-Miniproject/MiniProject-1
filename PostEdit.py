@@ -67,7 +67,7 @@ class PostEdit():
 		"""
 		c = self.__db__.cursor()
 		c.execute("SELECT title, body FROM posts WHERE pid = ?", (self.__post__.pid,))
-		post = cursor.fetchone()
+		post = c.fetchone()
 		self.__post__.title = post[0]
 		self.__post__.body = post[1]
 		return post
