@@ -68,9 +68,10 @@ class PostEdit():
 		c = self.__db__.cursor()
 		c.execute("SELECT title, body FROM posts WHERE pid = ?", (self.__post__.pid,))
 		post = c.fetchone()
-		self.__post__.title = post[0]
-		self.__post__.body = post[1]
-		return post
+		if post isinstance(QuestionQuery):
+			return QuestionQuery(post[0], self.__post__.voteCount, self.__post__.answerCount, post[1], self.__post__.pid)
+		else:
+			return AnswerQuery(post[0], self.__post__.voteCount, post[1], self.__post__.pid)
 
 if __name__ == "__main__":
 	pid = "6JcK"
